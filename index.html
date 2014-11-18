@@ -23,7 +23,7 @@
     <script type="text/javascript" src="./js/pdf417-min.js"></script>
     <script type="text/javascript" src="./js/llqrcode.js"></script>
     <script type="text/javascript" src="./js/webqr.js"></script>
-
+    <script type="text/javascript" charset="utf-8" src="./js/SavePhotoPlugin.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -217,7 +217,12 @@
             context = canvas.getContext('2d');
             context.drawImage(img, 0, 0);
 
-            canvas2ImagePlugin.saveImageDataToLibrary(function (msg) { alert("suc"+msg); }, function (err) { alert("error"+err); }, 'canvas');
+            //canvas2ImagePlugin.saveImageDataToLibrary(function (msg) { alert("suc" + msg); }, function (err) { alert("error" + err); }, 'canvas');
+            var canvas = document.getElementById("canvas");
+            window.savephotoplugin(canvas, "image/png", device.version, function (val) {
+                //returns you the saved path in val	
+                alert("Photo Saved: " + val);
+            });
 
         }
 

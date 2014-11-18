@@ -41,7 +41,7 @@
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
 
     <!-- Plugins -->
-
+    <plugin name="SavePhotoPlugin" value="org.apache.cordova.plugin.SavePhotoPlugin"/>
     <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
