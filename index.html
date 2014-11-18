@@ -113,7 +113,6 @@
         };
 
     </script>-->
-
     <!--<script type="text/javascript" charset="utf-8">
 
         var pictureSource;   // picture source
@@ -209,7 +208,7 @@
             var canvas2ImagePlugin; //devgeeks plugin for saving canvas images to photo gallery
             canvas2ImagePlugin = window.plugins.canvas2ImagePlugin;
 
-            var datasrc=$("#qr img").attr("src");
+            var datasrc = $("#qr img").attr("src");
             var img = new Image();
             img.src = datasrc;
             var canvas = document.createElement('canvas');
@@ -218,24 +217,13 @@
             context = canvas.getContext('2d');
             context.drawImage(img, 0, 0);
 
-         canvas2ImagePlugin.saveImageDataToLibrary(
-        function (msg) {
-            console.log(msg);
-        },
-        function (err) {
-            console.log(err);
-        },
-        document.getElementById('canvas')
-    );
+            canvas2ImagePlugin.saveImageDataToLibrary(function (msg) { alert("suc"+msg); }, function (err) { alert("error"+err); }, 'canvas');
 
         }
 
         //var canvas2ImagePlugin; //devgeeks plugin for saving canvas images to photo gallery
 
-        //function onDeviceReady() {
-        //    canvas2ImagePlugin = window.plugins.canvas2ImagePlugin;
-        //}
-
+       
         //function savePicture() {
         //    canvas2ImagePlugin.saveImageDataToLibrary(function (msg) { console.log(msg); }, function (err) { console.log(err); }, 'mycanvas');
         //}
@@ -253,28 +241,27 @@
         function decodeQR() {
             $("#loadingQR").show();
             var cnt = 1;
-            var myVar = setInterval(function ()
-            {
+            var myVar = setInterval(function () {
                 cnt = cnt + 1;
                 if (cnt == 3) {
                     setimg();
                     clearInterval(myVar);
                     $("#loadingQR").hide();
                 }
-                
+
             },
             1000);
-            
+
         }
 
-        function test() {          
+        function test() {
             var datasrc = $("#qr img").attr("src");
             $("#qrimage").attr("src", datasrc);
         }
 
     </script>
 
-    
+
     <style>
         .fileinput-button {
             position: relative;
@@ -295,12 +282,9 @@
                 direction: ltr;
                 cursor: pointer;
             }
-
-       
-
     </style>
 
-    
+
 
 </head>
 <body>
@@ -500,11 +484,11 @@
                     <div class="ui-grid-solo">
                         <a data-role="button" style="width:98%;" data-inline="true" id="qrimg" onclick="decodeQR()">Decode</a>
                     </div>
-                   
+
                     <div class="ui-grid-solo">
                         <img id="loadingQR" src="loading.gif" style="display:none" />
                     </div>
-                    
+
                     <br />
                 </div>
                 <div id="result" style="color: rgba(135, 54, 54, 1);"></div>
