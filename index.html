@@ -332,26 +332,18 @@
 
         <div data-role="content">
 
-            <h4>CODE 39:</h4>
-            <input id="code_39" value="" type="text">
-            <input value="Generate Barcode" type="button" onclick="generateC39();">
-
             <br />
-            <div class="barcode39" style="width: 100%; height: 50px; border: 1px solid red; ">
-
-            </div>
-            <br />
-            <br />
-            <br />
-            <h4>CODE 2 of 5 Interleaved:</h4>
-            <input name="text-basic" id="code_i25" value="" type="text">
-            <input value="Generate Barcode" type="button" onclick="generateI25();">
-            <br />
-            <div class="barcodeI25" style="width: 100%; height: 50px; border: 1px solid red;"></div>
-
-
-
-
+            <center>
+                <form>
+                    <textarea name="msg" rows="10" cols="40">Hello World!</textarea>
+                    <br />
+                    <a data-role="button" data-inline="true" onclick="update_qrcode();test();">Generate Qr</a>
+                    <br />
+                    <div id="qr"></div>
+                    <br />
+                    <a data-role="button" data-inline="true" onclick="saveImage()">Save Image</a>
+                </form>
+            </center>
 
 
         </div>
