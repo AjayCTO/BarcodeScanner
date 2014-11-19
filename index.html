@@ -23,7 +23,7 @@
     <script type="text/javascript" src="./js/pdf417-min.js"></script>
     <script type="text/javascript" src="./js/llqrcode.js"></script>
     <script type="text/javascript" src="./js/webqr.js"></script>
-    <script type="text/javascript" charset="utf-8" src="./js/SavePhotoPlugin.js"></script>
+
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -113,6 +113,7 @@
         };
 
     </script>-->
+
     <!--<script type="text/javascript" charset="utf-8">
 
         var pictureSource;   // picture source
@@ -208,7 +209,7 @@
             var canvas2ImagePlugin; //devgeeks plugin for saving canvas images to photo gallery
             canvas2ImagePlugin = window.plugins.canvas2ImagePlugin;
 
-            var datasrc = $("#qr img").attr("src");
+            var datasrc=$("#qr img").attr("src");
             var img = new Image();
             img.src = datasrc;
             var canvas = document.createElement('canvas');
@@ -217,18 +218,24 @@
             context = canvas.getContext('2d');
             context.drawImage(img, 0, 0);
 
-            //canvas2ImagePlugin.saveImageDataToLibrary(function (msg) { alert("suc" + msg); }, function (err) { alert("error" + err); }, 'canvas');
-            var canvas = document.getElementById("canvas");
-            window.savephotoplugin(canvas, "image/png", device.version, function (val) {
-                //returns you the saved path in val	
-                alert("Photo Saved: " + val);
-            });
+         canvas2ImagePlugin.saveImageDataToLibrary(
+        function (msg) {
+            console.log(msg);
+        },
+        function (err) {
+            console.log(err);
+        },
+        document.getElementById('canvas')
+    );
 
         }
 
         //var canvas2ImagePlugin; //devgeeks plugin for saving canvas images to photo gallery
 
-       
+        //function onDeviceReady() {
+        //    canvas2ImagePlugin = window.plugins.canvas2ImagePlugin;
+        //}
+
         //function savePicture() {
         //    canvas2ImagePlugin.saveImageDataToLibrary(function (msg) { console.log(msg); }, function (err) { console.log(err); }, 'mycanvas');
         //}
@@ -238,7 +245,8 @@
 
     <script>
         function exitApp() {
-            navigator.app.exitApp();
+
+            navigator.device.exitApp();
         };
     </script>
 
@@ -246,27 +254,28 @@
         function decodeQR() {
             $("#loadingQR").show();
             var cnt = 1;
-            var myVar = setInterval(function () {
+            var myVar = setInterval(function ()
+            {
                 cnt = cnt + 1;
                 if (cnt == 3) {
                     setimg();
                     clearInterval(myVar);
                     $("#loadingQR").hide();
                 }
-
+                
             },
             1000);
-
+            
         }
 
-        function test() {
+        function test() {          
             var datasrc = $("#qr img").attr("src");
             $("#qrimage").attr("src", datasrc);
         }
 
     </script>
 
-
+    
     <style>
         .fileinput-button {
             position: relative;
@@ -287,9 +296,18 @@
                 direction: ltr;
                 cursor: pointer;
             }
+
+
+        #qrimage {
+
+          max-width:220px;
+        }
+
+       
+
     </style>
 
-
+    
 
 </head>
 <body>
@@ -305,9 +323,9 @@
 
         <div data-role="navbar" data-position="fixed">
             <ul>
-                <li><a href="#barcodeGenerator" class="ui-btn-active ui-state-persist">1D Barcode</a></li>
+              <!--  <li><a href="#barcodeGenerator" >1D Barcode</a></li>-->
                 <li><a href="#qrGenerator">QR Code</a></li>
-                <li><a href="#pdfGenerator">PDF417 Code</a></li>
+              <!--  <li><a href="#pdfGenerator">PDF417 Code</a></li>-->
             </ul>
         </div>
         <!-- /header -->
@@ -343,7 +361,7 @@
             <div data-role="navbar" class="ui-navbar ui-mini" role="navigation">
                 <ul>
                     <li><a href="#barcodeGenerator" class="ui-btn-active ui-state-persist">Generator</a></li>
-                    <li><a href="#barcodeScanner">Scanner</a></li>
+                    <li><a href="#qrScanner">Scanner</a></li>
 
                 </ul>
 
@@ -408,9 +426,9 @@
         </div>
         <div data-role="navbar" data-position="fixed">
             <ul>
-                <li><a href="#barcodeGenerator">1D Barcode</a></li>
+              <!--  <li><a href="#barcodeGenerator">1D Barcode</a></li>-->
                 <li><a href="#qrGenerator" class="ui-btn-active ui-state-persist">QR Code</a></li>
-                <li><a href="#pdfGenerator">PDF417 Code</a></li>
+               <!-- <li><a href="#pdfGenerator">PDF417 Code</a></li>-->
             </ul>
         </div>
         <!-- /header -->
@@ -457,9 +475,9 @@
         </div>
         <div data-role="navbar" data-position="fixed">
             <ul>
-                <li><a href="#barcodeGenerator">1D Barcode</a></li>
+              <!--  <li><a href="#barcodeGenerator">1D Barcode</a></li>-->
                 <li><a href="#qrGenerator" class="ui-btn-active ui-state-persist">QR Code</a></li>
-                <li><a href="#pdfGenerator">PDF417 Code</a></li>
+              <!--  <li><a href="#pdfGenerator">PDF417 Code</a></li>-->
             </ul>
         </div>
         <!-- /header -->
@@ -473,11 +491,13 @@
 
                         <!--<input type='file' id="asd" />-->
                         <!--<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button>-->
-                        <span class="ui-btn ui-corner-all fileinput-button " style="width:98%;">
+
+                        <div>
+                        <span class="ui-btn ui-corner-all fileinput-button " style="width:60%; left:17%">
                             <span>Upload Image</span>
                             <input type='file' id="asd" />
                         </span>
-
+                        </div>
                     </div>
                     <br />
 
@@ -487,13 +507,13 @@
                     <br />
 
                     <div class="ui-grid-solo">
-                        <a data-role="button" style="width:98%;" data-inline="true" id="qrimg" onclick="decodeQR()">Decode</a>
+                        <a data-role="button" style="width:70%;" data-inline="true" id="qrimg" onclick="decodeQR()">Decode</a>
                     </div>
-
+                   
                     <div class="ui-grid-solo">
                         <img id="loadingQR" src="loading.gif" style="display:none" />
                     </div>
-
+                    
                     <br />
                 </div>
                 <div id="result" style="color: rgba(135, 54, 54, 1);"></div>
@@ -527,9 +547,9 @@
 
         <div data-role="navbar" data-position="fixed">
             <ul>
-                <li><a href="#barcodeGenerator">1D Barcode</a></li>
-                <li><a href="#qrGenerator">QR Code</a></li>
-                <li><a href="#pdfGenerator" class="ui-btn-active ui-state-persist">PDF417 Code</a></li>
+               <!-- <li><a href="#barcodeGenerator">1D Barcode</a></li>-->
+                <li><a class="ui-btn-active ui-state-persist" href="#qrGenerator">QR Code</a></li>
+              <!--  <li><a href="#pdfGenerator" >PDF417 Code</a></li>-->
             </ul>
         </div>
         <!-- /header -->
